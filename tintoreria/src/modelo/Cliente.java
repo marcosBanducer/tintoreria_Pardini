@@ -35,5 +35,10 @@ public class Cliente {
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
+
+	public int getId() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }
 

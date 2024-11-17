@@ -7,7 +7,7 @@ public class Pedido {
     private int id;
     private Cliente cliente;
     private List<Producto> productos = new ArrayList<>();
-    private double total;
+    private double total=0;
 
     public Pedido(int id, Cliente cliente) {
         this.id = id;
@@ -35,4 +35,9 @@ public class Pedido {
     public double getTotal() {
         return total;
     }
+
+    public void setId(int id) {
+        this.id = id; // Asigna el valor del parámetro id al atributo id
+    }
+
 }

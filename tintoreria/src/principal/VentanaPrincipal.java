@@ -1,15 +1,14 @@
 package principal;
 
 import java.awt.GridLayout;
-
 import javax.swing.*;
 import modelo.Cliente;
 import modelo.Pedido;
-import servicio.ServicioPedido;
+import servicio.PedidoServicio;
 
 public class VentanaPrincipal extends JFrame {
     private Pedido pedido;
-    private ServicioPedido servicioPedido = new ServicioPedido();
+    private PedidoServicio pedidoServicio = new PedidoServicio(); // Servicio que maneja la lógica de negocio
 
     public VentanaPrincipal() {
         setTitle("Sistema de Gestión de Pedidos");
@@ -17,9 +16,9 @@ public class VentanaPrincipal extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        // Crear un pedido de ejemplo
+        // Crear un pedido y persistir en la base de datos
         Cliente cliente = new Cliente("Juan Perez", "juan@example.com", "123456789");
-        pedido = servicioPedido.crearPedido(1, cliente);
+        pedido = pedidoServicio.crearPedido(cliente);
 
         // Crear el panel de botones
         JPanel panel = new JPanel();
@@ -27,6 +26,8 @@ public class VentanaPrincipal extends JFrame {
 
         JButton btnAgregarProducto = new JButton("Agregar Producto al Pedido");
         JButton btnVerTotalPedido = new JButton("Ver Total del Pedido");
+        btnVerTotalPedido.addActionListener(e -> new VentanaVerProductosPedido(pedido));
+
         JButton btnSalir = new JButton("Salir");
 
         panel.add(btnAgregarProducto);
